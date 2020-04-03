@@ -1,0 +1,104 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+  <style>
+  .currency img{
+  width:235px;
+  height:250px;
+  }
+  .currency video{
+  width:235px;
+    height:250px;
+  }
+  .owl-carousel-insta{
+  display:none;
+  }
+  
+  
+  </style>
+
+
+
+
+<div id="app" class='owl-carousel-insta'>
+  
+   <div
+    v-for="insta in info"
+    class="currency"
+  >
+  
+  
+
+  <div v-if="insta.media_type === 'CAROUSEL_ALBUM' ">
+  <a :href='insta.permalink' target='_blank'>
+  <img :src="insta.media_url"></a>
+</div>
+<div v-else-if="insta.media_type === 'IMAGE'">
+<a :href='insta.permalink' target='_blank'>
+ <img :src="insta.media_url">
+ </a>
+</div>
+
+<div v-else>
+<a :href='insta.permalink' target='_blank'>
+  <img :src="insta.thumbnail_url"> 
+  </a>
+</div>
+    
+    
+  </div>
+   
+    
+  
+</div>
+
+<script>
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      info: []
+    }
+  },
+  mounted () {
+  
+    axios
+      .get('https://graph.instagram.com/me/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=IGQVJXSFdEalAwd0NqNDVfWlViWmg2T1RWWDZAFdTRmYUltZAUs1dHlxRXFjaEpKWExTaDY3RmxScDdycXMzQ0l3cExmenNmYksyR0tGMGFReVgtcGRneWNaTHIyWmo2RElrOHhmdkdrQlNJX0JiRlJGSAZDZD')
+      .then(response => (this.info = response.data.data))
+	  .catch(error => console.log(error))
+  }
+})
+
+</script>
+<script>
+
+setTimeout(function() {   //calls click event after a certain time
+   $('.owl-carousel-insta').owlCarousel({
+        items:5,
+        merge:true,
+        loop:true,
+        margin:10,
+        video:true,
+        lazyLoad:true,
+        center:true,
+         autoPlay: 3000, 
+    
+        responsive:{
+            480:{
+                items:2
+            },
+            600:{
+                items:4
+            }
+        }
+    })
+
+}, 3000);
+
+
+</script>
