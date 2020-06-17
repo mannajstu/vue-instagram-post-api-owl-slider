@@ -68,7 +68,7 @@ new Vue({
   mounted () {
   
     axios
-      .get('https://graph.instagram.com/me/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=IGQVJXSFdEalAwd0NqNDVfWlViWmg2T1RWWDZAFdTRmYUltZAUs1dHlxRXFjaEpKWExTaDY3RmxScDdycXMzQ0l3cExmenNmYksyR0tGMGFReVgtcGRneWNaTHIyWmo2RElrOHhmdkdrQlNJX0JiRlJGSAZDZD')
+      .get('https://graph.instagram.com/me/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=IGQVJWVk5EZAXR0QURobnp4WFV6ZAFE3RlF3OHJKM19zMDBrUUluQXhvOVBac1lKclZAaY2gtakx2UXVSRV84TllYcGltcEdReFZA1SmtMYWFtNW1NeklGb2luNHJOblBZANThTUjBFeXJTMFdxN2luZAHIzYgZDZD')
       .then(response => (this.info = response.data.data))
 	  .catch(error => console.log(error))
   }
